@@ -7,9 +7,6 @@ const cors = require('cors');
 const { sequelize } = require('./models');
 const routes = require('./routes.js');
 
-// cors middleware to support cross origin resource sharing
-app.use(cors());
-
 // variable to enable global error logging
 const enableGlobalErrorLogging = process.env.ENABLE_GLOBAL_ERROR_LOGGING === 'true';
 
@@ -21,6 +18,9 @@ app.use(express.json());
 
 // setup morgan which gives us http request logging
 app.use(morgan('dev'));
+
+// cors middleware to support cross origin resource sharing
+app.use(cors());
 
 // setup a friendly greeting for the root route
 app.get('/', (req, res) => {
