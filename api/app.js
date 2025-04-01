@@ -3,8 +3,12 @@
 // load modules
 const express = require('express');
 const morgan = require('morgan');
+const cors = require('cors');
 const { sequelize } = require('./models');
 const routes = require('./routes.js');
+
+// cors middleware to support cross origin resource sharing
+app.use(cors());
 
 // variable to enable global error logging
 const enableGlobalErrorLogging = process.env.ENABLE_GLOBAL_ERROR_LOGGING === 'true';
