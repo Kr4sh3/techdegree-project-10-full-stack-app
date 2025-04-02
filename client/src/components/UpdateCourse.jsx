@@ -22,13 +22,15 @@ const UpdateCourse = () => {
             .then((data) => {
                 setCourse(data.data);
                 if (data.data === null)
-                    navigate("/notfound")
+                    navigate("/notfound");
+                if (data.data.user.id !== authUser.id)
+                    navigate("/forbidden");
             }).catch(error => {
                 console.log("There was an error while fetching the data!", error);
                 navigate("/error");
             }
             )
-    }, []);
+    }, [authUser.id, id, navigate]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();

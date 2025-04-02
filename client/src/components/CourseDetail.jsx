@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { useParams, Link, useNavigate, Navigate } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import Markdown from 'react-markdown';
 import axios from "axios";
 import ErrorsDisplay from "./ErrorsDisplay";
@@ -25,7 +25,7 @@ const CourseDetail = () => {
                 navigate("/error");
             }
             )
-    }, []);
+    }, [id, navigate]);
 
     const handleDelete = async () => {
         //Build Header

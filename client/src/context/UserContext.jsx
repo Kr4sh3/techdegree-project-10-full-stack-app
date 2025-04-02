@@ -9,7 +9,7 @@ export const UserProvider = (props) => {
     const [authUser, setAuthUser] = useState(cookie ? JSON.parse(cookie) : null);
 
     const signIn = async (credentials) => {
-        if (!credentials) 
+        if (!credentials)
             return;
         //Encode credentials in base64
         const encodedCredentials = btoa(`${credentials.emailAddress}:${credentials.password}`)
@@ -32,6 +32,8 @@ export const UserProvider = (props) => {
                 return user;
             }
         } catch (err) {
+            if (err.code === "ERR_NETWORK")
+                return new Error("Network Error");
             return null;
         }
     }

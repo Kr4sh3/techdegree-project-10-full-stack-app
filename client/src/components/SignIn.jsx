@@ -11,7 +11,7 @@ const SignIn = () => {
     const [errors, setErrors] = useState([]);
     const emailAddress = useRef(null);
     const password = useRef(null);
-    
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -33,7 +33,10 @@ const SignIn = () => {
         //Attempt signin, and redirect to original route or home page on success, otherwise notify user of unsuccessful attempt
         const user = await actions.signIn(credentials);
         if (user !== null) {
-            navigate(from);
+            if (user instanceof Error)
+                navigate("/error")
+            else
+                navigate(from);
         } else if (user === null) {
             setErrors(["Sign-in was unsuccessful"]);
         }

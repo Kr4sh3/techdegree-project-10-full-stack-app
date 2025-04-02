@@ -18,7 +18,7 @@ const Courses = () => {
                 navigate("/error");
             }
             )
-    }, []);
+    }, [navigate]);
 
     if (!courses)
         return <h1>Loading Courses...</h1>
